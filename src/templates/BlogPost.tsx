@@ -1,71 +1,53 @@
 import { Link, graphql } from 'gatsby';
+import styled from 'styled-components';
 
 import Bio from '@components/Bio';
 import Layout from '@components/Layout';
 import SEO from '@components/SEO';
+import PostSuggestions from '@templates/PostSuggestions';
 
 // TODO: replace type any
 export default function BlogPost({ data, pageContext }: any) {
     const post = data.markdownRemark;
-    const siteTitle = data.site.siteMetadata.title;
-    const { previous, next } = pageContext;
-    const { excerpt, html } = post;
-    const { date, description, title } = post.frontmatter;
-    const { slug: previousSlug, title: previousTitle } = previous.fields;
-    const { slug: nextSlug, title: nextTitle } = next.fields;
+
+    console.log(data);
 
     return (
-        <Layout title={siteTitle}>
-            <SEO description={description || excerpt} title={title} />
-            <article>
+        <Layout title={post.frontmatter.title}>
+            <SEO
+                description={post.excerpt || post.excerpt}
+                title={post.frontmatter.title}
+            />
+            <StyledPostContent>
                 <header>
-                    <h1>{title}</h1>
-                    <p>{date}</p>
+                    <h1>{post.frontmatter.title}</h1>
+                    <p>{post.frontmatter.date}</p>
                 </header>
-                <section dangerouslySetInnerHTML={{ __html: html }} />
-                <hr />
-                <footer>
-                    <Bio />
-                </footer>
-            </article>
-            <nav>
-                <ul>
-                    <li>
-                        {!!previous && (
-                            <Link to={previousSlug} rel="prev">
-                                ← {previousTitle}
-                            </Link>
-                        )}
-                    </li>
-                    <li>
-                        {!!next && (
-                            <Link to={nextSlug} rel="next">
-                                {nextTitle} →
-                            </Link>
-                        )}
-                    </li>
-                </ul>
-            </nav>
+                <section dangerouslySetInnerHTML={{ __html: post.html }} />
+            </StyledPostContent>
+            <PostSuggestions />
         </Layout>
     );
 }
 
-export const pageQuery = graphql`
-    query BlogPostBySlug($slug: String!) {
-        site {
-            siteMetadata {
-                title
-            }
-        }
+export const query = graphql`
+    query($slug: String!) {
         markdownRemark(fields: { slug: { eq: $slug } }) {
-            id
-            excerpt(pruneLength: 160)
-            html
             frontmatter {
                 title
                 date(formatString: "MMMM DD, YYYY")
                 description
             }
+            timeToRead
+            excerpt(pruneLength: 160)
+            fields {
+                slug
+            }
+            html
         }
     }
+`;
+
+const StyledPostContent = styled.div`
+    background: pink;
 `;

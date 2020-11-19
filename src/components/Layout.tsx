@@ -12,20 +12,27 @@ export default function Layout(props: LayoutProps) {
     return (
         <>
             <GlobalStyles />
-            <div>
-                <StyledWrapper>
-                    <Header title={title} />
-                    <Bio />
-                    <Category categories={categories as string[]} />
-                    <main>{children}</main>
-                    <footer>©Soulcactus</footer>
-                </StyledWrapper>
-            </div>
+            <StyledWrapper>
+                <Header title={title} />
+                <nav>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                </nav>
+                <StyledMainWrapper>{children}</StyledMainWrapper>
+                <StyledFooter>©hwizzzang</StyledFooter>
+            </StyledWrapper>
         </>
     );
 }
 
 export const StyledWrapper = styled.div`
-    max-width: 90rem;
-    margin: 0 auto;
+    padding: 0 3.2rem;
+`;
+
+export const StyledMainWrapper = styled.main`
+    background: lightcoral;
+`;
+export const StyledFooter = styled.footer`
+    background: lightgoldenrodyellow;
 `;

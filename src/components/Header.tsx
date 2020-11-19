@@ -2,31 +2,18 @@ import { Link } from 'gatsby';
 import styled from 'styled-components';
 
 import { HeaderProps } from '@interfaces/components/header';
+import Bio from '@components/Bio';
 
 export default function Header(props: HeaderProps) {
     const { title } = props;
 
     return (
         <StyledHeader>
-            <h1>
-                <Link to="/">{title}</Link>
-            </h1>
-            <button type="button">switch</button>
+            <Bio />
         </StyledHeader>
     );
 }
 
 const StyledHeader = styled.header`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    height: 10rem;
-
-    h1 {
-        font-family: 'Sorts Mill Goudy', sans-serif;
-        font-size: 3rem;
-        font-weight: bold;
-        letter-spacing: -0.1rem;
-    }
+    background: pink;
 `;

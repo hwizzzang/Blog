@@ -5,7 +5,7 @@ import styled from 'styled-components';
 export default function Bio() {
     const data = useStaticQuery(graphql`
         query BioQuery {
-            avatar: file(absolutePath: { regex: "/profile.png/" }) {
+            avatar: file(absolutePath: { regex: "/profile.jpg/" }) {
                 childImageSharp {
                     fixed(width: 75, height: 75) {
                         ...GatsbyImageSharpFixed
@@ -62,22 +62,7 @@ export default function Bio() {
 }
 
 const StyledBio = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    background: lightgray;
 `;
 
-const StyledProfile = styled.div`
-    flex-basis: calc(100% - 9rem);
-
-    h2 {
-        margin: 0 0 0.5rem;
-        font-size: 2rem;
-        font-weight: bold;
-        letter-spacing: -0.1rem;
-    }
-
-    span {
-        font-size: 1.4rem;
-    }
-`;
+const StyledProfile = styled.div``;

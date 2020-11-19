@@ -15,6 +15,7 @@ const GlobalStyles = createGlobalStyle`
     body {
         font-family: 'Spoqa Han Sans', sans-serif;
         font-size: 1.6rem;
+        background: #fafafa;
     }
     
     a {

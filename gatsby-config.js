@@ -82,17 +82,17 @@ module.exports = {
     ],
     siteMetadata: {
         author: {
-            name: 'soulcactus',
-            summary: '🌵 Front-End Developer',
+            name: 'Hwizzzang',
+            summary: 'Front-End Developer',
         },
         description: 'A starter blog demonstrating what Gatsby can do.',
         siteUrl: 'https://gatsby-starter-blog-demo.netlify.app/',
         social: {
-            github: 'soulcactus',
+            github: 'Hwizzzang',
             facebook: '',
-            twitter: '_soulcactus',
+            twitter: 'Hwizzzang',
             instagram: '',
         },
-        title: 'Soulcactus',
+        title: 'Hwizzzang',
     },
 };

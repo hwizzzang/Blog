@@ -1,15 +1,17 @@
 ---
-title: Hello World
-date: "2015-05-01T22:12:03.284Z"
-description: "Hello World"
-category: "test1"
+title: "테스트 1"
+date: "2020-11-15T22:12:03.284Z"
+description: "테스트1 description"
+category: "테스트 1"
+timage: "./salty_egg.jpg"
 ---
 
-This is my first post on my new fake blog! How exciting!
+테스트 1
+테스트 1
+테스트 1테스트 1
+테스트 1
 
-I'm sure I'll write a lot more interesting things in the future.
-
-Oh, and here's a great quote from this Wikipedia on
+테스트 1
 [salted duck eggs](https://en.wikipedia.org/wiki/Salted_duck_egg).
 
 > A salted duck egg is a Chinese preserved food product made by soaking duck

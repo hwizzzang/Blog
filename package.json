@@ -1,11 +1,11 @@
 {
-  "name": "gatsby-starter-cactus",
+  "name": "hwizzzang",
   "private": true,
   "description": "",
   "version": "0.1.0",
-  "author": "Soulcactus <sunhyejin@mensakorea.org>",
+  "author": "Hwizzzang <whatevermakes@naver.com>",
   "bugs": {
-    "url": "https://github.com/soulcactus/gatsby-starter-cactus/issues"
+    "url": "https://github.com/hwizzzang/blog/issues"
   },
   "dependencies": {
     "@babel/core": "^7.12.3",
@@ -53,7 +53,7 @@
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "prettier": "2.1.2"
   },
-  "homepage": "https://github.com/soulcactus/gatsby-starter-cactus/issues#readme",
+  "homepage": "https://github.com/hwizzzang/Blog.git",
   "keywords": [
     "blog"
   ],
@@ -61,7 +61,7 @@
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com//soulcactus/gatsby-starter-cactus.git"
+    "url": "git+https://github.com/hwizzzang/Blog.git"
   },
   "scripts": {
     "build": "gatsby build",

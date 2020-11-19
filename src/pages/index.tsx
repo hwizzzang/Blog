@@ -1,5 +1,6 @@
 import { Link, graphql } from 'gatsby';
 import React from 'react';
+import styled from 'styled-components';
 
 import Layout from '@components/Layout';
 import SEO from '@components/SEO';
@@ -10,14 +11,15 @@ const BlogIndex = (props: BlogIndexProps) => {
     const siteTitle = data.site.siteMetadata.title;
     const posts = data.allMarkdownRemark.edges;
 
+    console.log(data);
+
     const categories = Array.from(
         new Set(posts.map((item) => item.node.frontmatter.category).sort()),
     );
 
     return (
         <Layout categories={categories} title={siteTitle}>
-            <SEO title="All posts" />
-            <>
+            <ul>
                 {posts.map((item) => {
                     const node = item.node;
                     const { excerpt, frontmatter } = node;
@@ -25,13 +27,13 @@ const BlogIndex = (props: BlogIndexProps) => {
                     const { date, description, title } = frontmatter;
 
                     return (
-                        <article key={slug}>
-                            <header>
+                        <StyledPostList key={slug}>
+                            <div>
                                 <h3>
                                     <Link to={slug}>{title ?? slug}</Link>
                                 </h3>
                                 <small>{date}</small>
-                            </header>
+                            </div>
                             <section>
                                 <p
                                     dangerouslySetInnerHTML={{
@@ -39,10 +41,10 @@ const BlogIndex = (props: BlogIndexProps) => {
                                     }}
                                 />
                             </section>
-                        </article>
+                        </StyledPostList>
                     );
                 })}
-            </>
+            </ul>
         </Layout>
     );
 };
@@ -69,8 +71,31 @@ export const pageQuery = graphql`
                         description
                         category
                     }
+                    children {
+                        ... on ImageSharp {
+                            fluid {
+                                base64
+                                tracedSVG
+                                srcWebp
+                                srcSetWebp
+                                originalImg
+                                originalName
+                            }
+                            children {
+                                ... on ImageSharp {
+                                    id
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
+    }
+`;
+
+export const StyledPostList = styled.li`
+    &:not(:last-child) {
+        margin-bottom: 2rem;
     }
 `;
