@@ -24,7 +24,7 @@ export default function SEO(props: SEOProps) {
         `,
     );
 
-    const { description = '', lang = 'en', title } = props;
+    const { description = 'hwizzzang blog', lang = 'ko', title } = props;
     const metaDescription = description || site.siteMetadata.description;
 
     return (
