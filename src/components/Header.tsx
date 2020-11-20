@@ -1,18 +1,17 @@
-import React from 'react';
 import { Link } from 'gatsby';
+import React from 'react';
 import styled from 'styled-components';
+
+import Bio from '@components/Bio';
 import { Container, Wrapper } from '@styles/mixIn';
 
-import { HeaderProps } from '@interfaces/components/header';
-import Bio from '@components/Bio';
-
-export default function Header(props: HeaderProps) {
-    const { title } = props;
-
+export default function Header() {
     return (
         <StyledHeader>
             <div>
-                <h1>Hwizzang blog</h1>
+                <h1>
+                    <Link to="/"> Hwizzang blog</Link>
+                </h1>
                 <Bio />
             </div>
         </StyledHeader>
