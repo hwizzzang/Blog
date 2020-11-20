@@ -1,16 +1,15 @@
 import { Link, graphql } from 'gatsby';
 import styled from 'styled-components';
 
-import Bio from '@components/Bio';
 import Layout from '@components/Layout';
 import SEO from '@components/SEO';
-import PostSuggestions from '@templates/PostSuggestions';
 
 // TODO: replace type any
 export default function BlogPost({ data, pageContext }: any) {
     const post = data.markdownRemark;
 
-    console.log(data);
+    const { previous, next } = pageContext;
+    console.log(pageContext);
 
     return (
         <Layout title={post.frontmatter.title}>
@@ -19,13 +18,30 @@ export default function BlogPost({ data, pageContext }: any) {
                 title={post.frontmatter.title}
             />
             <StyledPostContent>
-                <header>
+                <div>
                     <h1>{post.frontmatter.title}</h1>
-                    <p>{post.frontmatter.date}</p>
-                </header>
-                <section dangerouslySetInnerHTML={{ __html: post.html }} />
+                    <span>{post.frontmatter.date}</span>
+                </div>
+                <article dangerouslySetInnerHTML={{ __html: post.html }} />
+                <StyledPostSuggestions>
+                    <ul>
+                        <li>
+                            {!!previous && (
+                                <Link to={previous.fields.slug} rel="prev">
+                                    {previous.frontmatter.title}
+                                </Link>
+                            )}
+                        </li>
+                        <li>
+                            {!!next && (
+                                <Link to={next.fields.slug} rel="next">
+                                    {next.frontmatter.title}
+                                </Link>
+                            )}
+                        </li>
+                    </ul>
+                </StyledPostSuggestions>
             </StyledPostContent>
-            <PostSuggestions />
         </Layout>
     );
 }
@@ -48,6 +64,16 @@ export const query = graphql`
     }
 `;
 
-const StyledPostContent = styled.div`
-    background: pink;
+const StyledPostContent = styled.section``;
+
+const StyledPostSuggestions = styled.nav`
+    ul {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    li {
+        height: 4rem;
+        background: pink;
+    }
 `;

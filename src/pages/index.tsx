@@ -3,8 +3,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Layout from '@components/Layout';
-import SEO from '@components/SEO';
 import { BlogIndexProps } from '@interfaces/pages/blogIndex';
+import mediaQuery from '@styles/mediaQuery';
+import Thumbnail from '@components/Thumbnail';
 
 const BlogIndex = (props: BlogIndexProps) => {
     const { data } = props;
@@ -19,32 +20,33 @@ const BlogIndex = (props: BlogIndexProps) => {
 
     return (
         <Layout categories={categories} title={siteTitle}>
-            <ul>
+            <StyledPostList>
                 {posts.map((item) => {
                     const node = item.node;
                     const { excerpt, frontmatter } = node;
                     const { slug } = node.fields;
                     const { date, description, title } = frontmatter;
 
+                    console.log(node);
+
                     return (
-                        <StyledPostList key={slug}>
+                        <StyledPostListItem key={slug}>
                             <div>
+                                <Thumbnail src={item} />
                                 <h3>
                                     <Link to={slug}>{title ?? slug}</Link>
                                 </h3>
-                                <small>{date}</small>
+                                <span>{date}</span>
                             </div>
-                            <section>
-                                <p
-                                    dangerouslySetInnerHTML={{
-                                        __html: description || excerpt,
-                                    }}
-                                />
-                            </section>
-                        </StyledPostList>
+                            <p
+                                dangerouslySetInnerHTML={{
+                                    __html: description || excerpt,
+                                }}
+                            />
+                        </StyledPostListItem>
                     );
                 })}
-            </ul>
+            </StyledPostList>
         </Layout>
     );
 };
@@ -94,8 +96,26 @@ export const pageQuery = graphql`
     }
 `;
 
-export const StyledPostList = styled.li`
-    &:not(:last-child) {
-        margin-bottom: 2rem;
-    }
+export const StyledPostList = styled.ul`
+    display: grid;
+    grid-template-columns: repeat(1);
+    grid-gap: 1.6rem;
+
+    ${mediaQuery('md')`
+        grid-gap: 2.4rem;
+        grid-template-columns: repeat(2, 1fr);
+    `}
+
+    ${mediaQuery('lg')`
+        grid-gap: 3.2rem;
+        grid-template-columns: repeat(3, 1fr);
+    `}
+`;
+
+export const StyledPostListItem = styled.li`
+    border: 0.1rem solid black;
+
+    //&:not(:last-child) {
+    //    margin-bottom: 2rem;
+    //}
 `;

@@ -1,3 +1,4 @@
+import React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import Image from 'gatsby-image';
 import styled from 'styled-components';
@@ -31,7 +32,9 @@ export default function Bio() {
 
     const { author, social } = data.site.siteMetadata;
     const { name, summary } = author;
-    const { facebook, github, instagram, twitter } = social;
+    const { facebook, github, instagram } = social;
+
+    console.log(social);
 
     return (
         <StyledBio>
@@ -43,26 +46,44 @@ export default function Bio() {
                     borderRadius: '100%',
                 }}
             />
-            <StyledProfile>
-                <h2>
-                    <Link to="/about">{name}</Link>
-                </h2>
-                <span>{summary}</span>
-                {!!Object.values(social).length && (
-                    <ul>
-                        {!!github && <li>github</li>}
-                        {!!facebook && <li>facebook</li>}
-                        {!!twitter && <li>twitter</li>}
-                        {!!instagram && <li>instagram</li>}
-                    </ul>
-                )}
-            </StyledProfile>
+            <b>{name}</b>
+            <span>{summary}</span>
+            <ul>
+                {!!github && <li>{github}</li>}
+                {!!facebook && <li>{facebook}</li>}
+                {!!instagram && <li>{instagram}</li>}
+            </ul>
         </StyledBio>
     );
 }
 
 const StyledBio = styled.div`
-    background: lightgray;
-`;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
 
-const StyledProfile = styled.div``;
+    b {
+        margin: 2rem 0 0;
+    }
+
+    span {
+        display: block;
+        margin: 0.5rem 0 0;
+    }
+
+    ul {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 2rem;
+    }
+
+    li {
+        text-align: center;
+
+        &:not(:first-child) {
+            margin: 0 0 0 2rem;
+        }
+    }
+`;
