@@ -3,7 +3,9 @@ title: "테스트 1"
 date: "2020-11-15T22:12:03.284Z"
 description: "테스트1 description"
 category: "테스트 1"
-timage: "./salty_egg.jpg"
+thumbnail:
+    src: ./salty_egg.jpg
+    alt: salty_egg
 ---
 
 테스트 1

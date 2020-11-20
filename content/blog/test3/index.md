@@ -1,7 +1,10 @@
 ---
 title: "테스트 3"
 date: "2020-11-17T22:40:32.169Z"
-description: "테스트 2 description"
+description: "테스트 3 description"
+thumbnail:
+    src: "./salty_egg.jpg"
+    alt: "salty_egg"
 ---
 
  테스트 3
