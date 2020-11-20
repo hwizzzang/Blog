@@ -1,38 +1,46 @@
 import { Link, graphql } from 'gatsby';
+import Img from 'gatsby-image';
 import React from 'react';
 import styled from 'styled-components';
 
 import Layout from '@components/Layout';
+import SEO from '@components/SEO';
 import { BlogIndexProps } from '@interfaces/pages/blogIndex';
 import mediaQuery from '@styles/mediaQuery';
-import Thumbnail from '@components/Thumbnail';
 
 const BlogIndex = (props: BlogIndexProps) => {
     const { data } = props;
     const siteTitle = data.site.siteMetadata.title;
     const posts = data.allMarkdownRemark.edges;
 
-    console.log(data);
-
     const categories = Array.from(
         new Set(posts.map((item) => item.node.frontmatter.category).sort()),
     );
 
     return (
-        <Layout categories={categories} title={siteTitle}>
+        <Layout categories={categories}>
+            <SEO title={siteTitle} />
             <StyledPostList>
                 {posts.map((item) => {
                     const node = item.node;
                     const { excerpt, frontmatter } = node;
                     const { slug } = node.fields;
-                    const { date, description, title } = frontmatter;
-
-                    console.log(node);
+                    const { date, description, title, thumbnail } = frontmatter;
 
                     return (
                         <StyledPostListItem key={slug}>
                             <div>
-                                <Thumbnail src={item} />
+                                <Link to={slug}>
+                                    {!!thumbnail && (
+                                        <Img
+                                            alt={thumbnail.alt}
+                                            fluid={
+                                                thumbnail.src.childImageSharp
+                                                    .fluid
+                                            }
+                                        />
+                                    )}
+                                </Link>
                                 <h3>
                                     <Link to={slug}>{title ?? slug}</Link>
                                 </h3>
@@ -72,20 +80,13 @@ export const pageQuery = graphql`
                         title
                         description
                         category
-                    }
-                    children {
-                        ... on ImageSharp {
-                            fluid {
-                                base64
-                                tracedSVG
-                                srcWebp
-                                srcSetWebp
-                                originalImg
-                                originalName
-                            }
-                            children {
-                                ... on ImageSharp {
-                                    id
+                        thumbnail {
+                            alt
+                            src {
+                                childImageSharp {
+                                    fluid(maxWidth: 1280) {
+                                        ...GatsbyImageSharpFluid
+                                    }
                                 }
                             }
                         }

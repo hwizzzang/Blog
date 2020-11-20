@@ -9,6 +9,7 @@ export interface BlogIndexProps {
     };
 }
 
+// thumbnail type 수정
 export interface PostData {
     node: {
         excerpt: string;
@@ -20,6 +21,7 @@ export interface PostData {
             date: string;
             description: string;
             title: string;
+            thumbnail: any;
         };
     };
 }
