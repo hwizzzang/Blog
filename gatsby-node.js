@@ -14,10 +14,12 @@ exports.createPages = async ({ graphql, actions }) => {
                 ) {
                     edges {
                         node {
+                            excerpt
                             fields {
                                 slug
                             }
                             frontmatter {
+                                date(formatString: "DD MMMM, YYYY")
                                 title
                             }
                         }
@@ -32,6 +34,8 @@ exports.createPages = async ({ graphql, actions }) => {
     }
 
     const posts = result.data.allMarkdownRemark.edges;
+
+    console.log(posts.length);
 
     posts.forEach((post, index) => {
         const previous =
