@@ -2,20 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 
 import mediaQuery from '@styles/mediaQuery';
-import { Container } from '@styles/mixIn';
 
 export default function Navigation() {
     return (
         <StyledNavigation>
-            <div>
-                <button>left</button>
-                <ul>
-                    <li>JavaScript</li>
-                    <li>StyledComponents</li>
-                    <li>React</li>
-                </ul>
-                <button>right</button>
-            </div>
+            <button>left</button>
+            <ul>
+                <li>JavaScript</li>
+                <li>StyledComponents</li>
+                <li>React</li>
+            </ul>
+            <button>right</button>
         </StyledNavigation>
     );
 }
@@ -25,7 +22,6 @@ const StyledNavigation = styled.nav`
     align-items: center;
     justify-content: center;
     border: 0.1rem solid black;
-    ${Container}
 
     > div {
         display: flex;

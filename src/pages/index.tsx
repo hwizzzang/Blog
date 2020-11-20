@@ -18,7 +18,7 @@ const BlogIndex = (props: BlogIndexProps) => {
     );
 
     return (
-        <Layout categories={categories}>
+        <Layout categories={categories} title={siteTitle}>
             <SEO title={siteTitle} />
             <StyledPostList>
                 {posts.map((item) => {
@@ -28,7 +28,7 @@ const BlogIndex = (props: BlogIndexProps) => {
                     const { date, description, title, thumbnail } = frontmatter;
 
                     return (
-                        <StyledPostListItem key={slug}>
+                        <li key={slug}>
                             <div>
                                 <Link to={slug}>
                                     {!!thumbnail && (
@@ -51,7 +51,7 @@ const BlogIndex = (props: BlogIndexProps) => {
                                     __html: description || excerpt,
                                 }}
                             />
-                        </StyledPostListItem>
+                        </li>
                     );
                 })}
             </StyledPostList>
@@ -101,22 +101,23 @@ export const StyledPostList = styled.ul`
     display: grid;
     grid-template-columns: repeat(1);
     grid-gap: 1.6rem;
+    max-width: 128rem;
+    margin: 0 auto;
+    padding: 0 1.6rem;
 
     ${mediaQuery('md')`
         grid-gap: 2.4rem;
         grid-template-columns: repeat(2, 1fr);
+        padding: 0 2.4rem;
     `}
 
     ${mediaQuery('lg')`
         grid-gap: 3.2rem;
         grid-template-columns: repeat(3, 1fr);
+        padding: 0 3.2rem;
     `}
-`;
-
-export const StyledPostListItem = styled.li`
-    border: 0.1rem solid black;
-
-    //&:not(:last-child) {
-    //    margin-bottom: 2rem;
-    //}
+    
+    li {
+        border: 0.1rem solid black;
+    }
 `;

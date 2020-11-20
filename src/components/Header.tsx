@@ -3,27 +3,20 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Bio from '@components/Bio';
-import { Container, Wrapper } from '@styles/mixIn';
+import { Wrapper } from '@styles/mixIn';
 
 export default function Header() {
     return (
         <StyledHeader>
-            <div>
-                <h1>
-                    <Link to="/"> Hwizzang blog</Link>
-                </h1>
-                <Bio />
-            </div>
+            <h1>
+                <Link to="/"> Hwizzang blog</Link>
+            </h1>
+            <Bio />
         </StyledHeader>
     );
 }
 
 const StyledHeader = styled.header`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    ${Container}
-
     h1 {
         width: fit-content;
         margin: 2rem auto;

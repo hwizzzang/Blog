@@ -65,7 +65,10 @@ export const query = graphql`
     }
 `;
 
-const StyledPostContent = styled.section``;
+const StyledPostContent = styled.section`
+    max-width: 128rem;
+    margin: 0 auto;
+`;
 
 const StyledPostSuggestions = styled.nav`
     ul {
